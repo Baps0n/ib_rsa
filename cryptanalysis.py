@@ -13,6 +13,7 @@ def convergents(n, d):
     k2, k1 = 0, 1
     d2, d1 = 1, 0
     res = []
+    print(f"Непрерывная дробь {n}/{d}: {continued_fraction(n, d)}")
     for x in continued_fraction(n, d):
         k2, k1 = k1, k1 * x + k2
         d2, d1 = d1, d1 * x + d2
@@ -22,7 +23,8 @@ def convergents(n, d):
 
 def wiener_attack(e, n):
     cnv = convergents(e, n)
-    print(cnv)
+
+    print(f"Подходящие дроби kn/dn: {cnv}")
 
     for i in cnv[2:]:
         k = i[0]
@@ -35,9 +37,14 @@ def wiener_attack(e, n):
             if b ** 2 - 4 * n > 0:
                 p = (-b + math.isqrt(b ** 2 - 4 * n)) / 2
                 q = (-b - math.isqrt(b ** 2 - 4 * n)) / 2
+                print(f"Дискриминант больше нуля, рассмотрим корни уравнения:\n"
+                      f"p = {p}\n"
+                      f"q = {q}")
 
                 if p*q == n:
                     return f"Значение d: {d}"
+                else:
+                    print(f"Произведение корней не равно n, переходим к следующим значениям\n")
     return 'Атака не удалась'
 
 

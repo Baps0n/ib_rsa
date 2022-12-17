@@ -77,7 +77,7 @@ def gen_prime_pair(p_len):
             if is_prime_ferma(q):
                 # print(p,q)
                 if len(bin(p*q)[2:]) == p_len:
-                    print(p,q)
+                    # print(p,q)
                     return [p, q]
 
 
@@ -90,7 +90,7 @@ def gen_d(pq, e):
     d = gcd_euclidean(max(f_euler, e), min(f_euler, e))['y']
     if d < 0:
         d = max(f_euler, e) + d
-    print('gen_d', pq, e, f_euler, d)
+    # print('gen_d', pq, e, f_euler, d)
     return d
 
 
@@ -110,19 +110,19 @@ def convert_data(inp, n):
         cur += block_size
     # if len(inp_s[-1]) < block_size:
     #     inp_s[-1] += str('0' * (block_size - len(inp_s[-1])))
-    print('c', inp_s)
+    # print('c', inp_s)
     return inp_s
 
 
 def data_to_unicode(data, n):
     res = []
-    print('UN', data)
+    # print('UN', data)
     if len(data) % 2 == 1:
         data += '0'
 
     for i in range(0, len(data), 2):
         res.append(chr(int(data[i] + data[i+1], 16)))
-    print(res)
+    # print(res)
     return ''.join(res)
 
 # def rsa_encode(data, e, n):
@@ -139,7 +139,7 @@ def rsa_encode(data, e, n):
     for i in data:
         res_i = hex(pow(int(i, 16), e, n))[2:]
         res.append('0' * (len(hex(n)[2:]) - len(res_i)) + str(res_i))
-    print('e', res)
+    # print('e', res)
     return data_to_unicode(''.join(res), n)
 
 
@@ -149,7 +149,7 @@ def rsa_decode(enc_data, d, n):
     for i in enc_data:
         res_i = hex(pow(int(i, 16), d, n))[2:]
         res.append(str(res_i))
-    print('d', res)
+    # print('d', res)
     return data_to_unicode(''.join(res), n)
 
 
